@@ -12,7 +12,7 @@ var util = require('./util')
 var SheetView = function (config) {
     config = config || {};
 
-    _.assing(this, config);
+    _.assign(this, config);
     _.defaults(this, {
         pane: new Pane(),
         showZeros: null,
