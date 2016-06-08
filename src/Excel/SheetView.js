@@ -12,25 +12,28 @@ var util = require('./util')
 var SheetView = function (config) {
     config = config || {};
 
-    this.pane = config.pane || new Pane();
-    this.showZeros = null; //Default
-    this.defaultGridColor = null;
-    this.colorId = null;
-    this.rightToLeft = null;
-    this.showFormulas = null;
-    this.showGridLines = null;
-    this.showOutlineSymbols = null;
-    this.showRowColHeaders = null;
-    this.showRuler = null;
-    this.showWhiteSpace = null;
-    this.tabSelected = null;
-    this.topLeftCell = null;
-    this.viewType = null; //http://www.datypic.com/sc/ooxml/t-ssml_ST_SheetViewType.html
-    this.windowProtection = null;
-    this.zoomScale = null;
-    this.zoomScaleNormal = null;
-    this.zoomScalePageLayoutView = null;
-    this.zoomScaleSheetLayoutView = null;
+    _.assing(this, config);
+    _.defaults(this, {
+        pane: new Pane(),
+        showZeros: null,
+        defaultGridColor: null,
+        colorId: null,
+        rightToLeft: null,
+        showFormulas: null,
+        showGridLines: null,
+        showOutlineSymbols: null,
+        showRowColHeaders: null,
+        showRuler: null,
+        showWhiteSpace: null,
+        tabSelected: null,
+        topLeftCell: null,
+        viewType: null, //http://www.datypic.com/sc/ooxml/t-ssml_ST_SheetViewType.html
+        windowProtection: null,
+        zoomScale: null,
+        zoomScaleNormal: null,
+        zoomScalePageLayoutView: null,
+        zoomScaleSheetLayoutView: null
+    });
 };
 
 _.extend(SheetView.prototype, {
@@ -70,7 +73,7 @@ _.extend(SheetView.prototype, {
             tabSelected:  {v: this.tabSelected, type: Boolean},
             viewType: this.viewType,
             windowProtection:  {v: this.windowProtection, type: Boolean},
-            zoomScale:  {v: this.zoomScale, type: Boolean},
+            zoomScale:  this.zoomScale,
             zoomScaleNormal: this.zoomScaleNormal,
             zoomScalePageLayoutView: this.zoomScalePageLayoutView,
             zoomScaleSheetLayoutView: this.zoomScaleSheetLayoutView
