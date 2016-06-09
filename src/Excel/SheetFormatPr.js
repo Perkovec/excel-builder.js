@@ -27,7 +27,7 @@ var SheetFormatPr = function (config) {
 
 _.extend(SheetFormatPr.prototype, {
     exportXML: function (doc) {
-        var sheetFormatPr = doc.createElement('sheetformatpr');
+        var sheetFormatPr = doc.createElement('sheetFormatPr');
 
         util.setAttributesOnDoc(sheetFormatPr, {
             baseColWidth: this.baseColWidth,

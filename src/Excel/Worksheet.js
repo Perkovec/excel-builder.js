@@ -3,7 +3,6 @@ var _ = require('lodash');
 var util = require('./util');
 var RelationshipManager = require('./RelationshipManager');
 var SheetView = require('./SheetView');
-var SheetFromatPr = require('./SheetFormatPr');
 
 /**
  * This module represents an excel worksheet in its basic form - no tables, charts, etc. Its purpose is 
@@ -27,7 +26,7 @@ var SheetFromatPr = require('./SheetFormatPr');
 
         this.hyperlinks = [];
         this.sheetView = config.sheetView || new SheetView();
-        this.sheetFormatPr = config.sheetFormatPr || new SheetFromatPr();
+        this.sheetFormatPr = config.sheetFormatPr;
 
         this.showZeros = null;
         this.initialize(config);
@@ -374,7 +373,7 @@ var SheetFromatPr = require('./SheetFormatPr');
             }
 
             worksheet.appendChild(this.sheetView.exportXML(doc));
-            worksheet.appendChild(this.sheetFormatPr.exportXML(doc));
+            if (this.sheetFormatPr) { worksheet.appendChild(this.sheetFormatPr.exportXML(doc)); }
 
             if(this.columns.length) {
                 worksheet.appendChild(this.exportColumns(doc));
