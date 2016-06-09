@@ -11,6 +11,7 @@ var EBExport = module.exports = {
     SharedStrings: require('./Excel/SharedStrings'),
     SheetProtection: require('./Excel/SheetProtection'),
     SheetView: require('./Excel/SheetView'),
+    SheetFormatPr: require('./Excel/SheetView'),
     StyleSheet: require('./Excel/StyleSheet'),
     Table: require('./Excel/Table'),
     util: require('./Excel/util'),
