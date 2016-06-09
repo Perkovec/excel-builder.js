@@ -1,8 +1,9 @@
+"use strict";
+
 /* jshint unused: false */
 /* globals  importScripts, JSZip, postMessage */
 
 var onmessage = function(event) {
-    "use strict";
     if (!event.data || !event.data.ziplib) { return; }
     
     importScripts(event.data.ziplib);

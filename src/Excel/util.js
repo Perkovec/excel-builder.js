@@ -79,7 +79,7 @@ var util = {
             if(v !== null && v !== undefined) {
                 doc.setAttribute(k, v);
             }
-        })
+        });
     },
 
     LETTER_REFS: {},

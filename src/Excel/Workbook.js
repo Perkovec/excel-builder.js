@@ -76,7 +76,7 @@ _.extend(Workbook.prototype, {
      * @param {int} number of columns to repeat from the left
      * @returns {undefined}
      */
-    setPrintTitleLeft: function (inSheet, inColumn) {
+    setPrintTitleLeft: function (inSheet , inColumn) {
     	if (this.printTitles == null) {
     		this.printTitles = {};
     	}
@@ -84,7 +84,7 @@ _.extend(Workbook.prototype, {
     		this.printTitles[inSheet] = {};
     	}
     	//WARN: this does not handle AA, AB, etc.
-    	this.printTitles[inSheet].left = String.fromCharCode(64 + inRowCount);
+    	this.printTitles[inSheet].left = String.fromCharCode(64 + inColumn); // inRowCount --> inColumn
     },
 
     addMedia: function (type, fileName, fileData, contentType) {
@@ -229,7 +229,7 @@ _.extend(Workbook.prototype, {
         	if (entry.top) {
         		value += name + "!$1:$" + entry.top;
         		if (entry.left) {
-        			value += ","
+        			value += ",";
         		}
         	}
         	if (entry.left) {

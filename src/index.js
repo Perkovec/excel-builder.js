@@ -1,4 +1,6 @@
-var _ = require('lodash');
+"use strict";
+
+//var _ = require('lodash'); <-- unused
 var EBExport = module.exports = {
     Drawings: require('./Excel/Drawings'),
     Drawing: require('./Excel/Drawing/index'),
@@ -22,7 +24,7 @@ var EBExport = module.exports = {
 };
 
 try {
-    if(typeof window !== 'undefined!') {
+    if(typeof window !== undefined) {
         window.ExcelBuilder = EBExport;
     }
 } catch (e) {

@@ -50,7 +50,7 @@ _.extend(SheetProtection.prototype, {
                 var spinCount = this.spinCount = this.spinCount || 1000;
                 var pass = this.saltValue + '' + this.unhashedValue;
 
-                this.saltValue = new Buffer(this.saltValue).toString('base64')
+                this.saltValue = new Buffer(this.saltValue).toString('base64');
 
                 while(spinCount--) {
                     md.update(pass);

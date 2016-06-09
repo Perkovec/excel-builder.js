@@ -50,7 +50,7 @@ _.extend(RelationshipManager.prototype, {
                 ['Type', data.schema],
                 ['Target', data.object.target || Paths[id]]
             ]);
-            data.object.targetMode && relationship.setAttribute('TargetMode', data.object.targetMode);
+            if (data.object.targetMode) { relationship.setAttribute('TargetMode', data.object.targetMode); }
             relationships.appendChild(relationship);
         });
         return doc;

@@ -7,7 +7,7 @@
 "use strict";
 var _ = require('lodash');
 var Pane = require('./Pane');
-var util = require('./util')
+var util = require('./util');
 
 var SheetView = function (config) {
     config = config || {};

@@ -1,4 +1,4 @@
-/* jshint strict: false, node: true */
+/* jshint strict: false, node: true, unused: false */
 /* globals  onmessage: true, importScripts, postMessage */
 "use strict";
 var requireConfig;
@@ -11,7 +11,6 @@ var start = function(data) {
         
     });
 };
-
 var onmessage = function(event) {
     var data = event.data;
     if (typeof data === 'object') {
@@ -34,6 +33,4 @@ var onmessage = function(event) {
         }
     }
 };
-
-
-
+/* jshint ignore:end */

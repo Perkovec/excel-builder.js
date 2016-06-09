@@ -3,6 +3,7 @@ var _ = require('lodash');
 var util = require('./util');
 var RelationshipManager = require('./RelationshipManager');
 var SheetView = require('./SheetView');
+var SheetFromatPr = require('./SheetFormatPr');
 
 /**
  * This module represents an excel worksheet in its basic form - no tables, charts, etc. Its purpose is 
@@ -26,6 +27,7 @@ var SheetView = require('./SheetView');
 
         this.hyperlinks = [];
         this.sheetView = config.sheetView || new SheetView();
+        this.sheetFormatPr = config.sheetFormatPr || new SheetFromatPr();
 
         this.showZeros = null;
         this.initialize(config);
@@ -372,6 +374,7 @@ var SheetView = require('./SheetView');
             }
 
             worksheet.appendChild(this.sheetView.exportXML(doc));
+            worksheet.appendChild(this.sheetFormatPr.exportXML(doc));
 
             if(this.columns.length) {
                 worksheet.appendChild(this.exportColumns(doc));
@@ -389,7 +392,7 @@ var SheetView = require('./SheetView');
             if(this.hyperlinks.length > 0) {
                 var hyperlinksEl = doc.createElement('hyperlinks');
                 var hyperlinks = this.hyperlinks;
-                for(var i = 0, l = hyperlinks.length; i < l; i++) {
+                for(i = 0, l = hyperlinks.length; i < l; i++) {
                     var hyperlinkEl = doc.createElement('hyperlink'),
                         hyperlink = hyperlinks[i];
                     hyperlinkEl.setAttribute('ref', hyperlink.cell);
@@ -494,21 +497,21 @@ var SheetView = require('./SheetView');
         exportPageSettings: function (doc, worksheet) {
             if(this._margin) {
             	var defaultVal = 0.7;
-            	var left = this._margin.left?this._margin.left:defaultVal;;
-            	var right = this._margin.right?this._margin.right:defaultVal;;
+            	var left = this._margin.left?this._margin.left:defaultVal;
+            	var right = this._margin.right?this._margin.right:defaultVal;
             	var top = this._margin.top?this._margin.top:defaultVal;
             	var bottom = this._margin.bottom?this._margin.bottom:defaultVal;
             	defaultVal = 0.3;
-            	var header = this._margin.header?this._margin.header:defaultVal;;
-            	var footer = this._margin.footer?this._margin.footer:defaultVal;;
+            	var header = this._margin.header?this._margin.header:defaultVal;
+            	var footer = this._margin.footer?this._margin.footer:defaultVal;
             	
             	worksheet.appendChild(util.createElement(doc, 'pageMargins', [
-                    ['top', top]
-                    , ['bottom', bottom]
-                    , ['left', left]
-                    , ['right', right]
-                    , ['header', header]
-                    , ['footer', footer]
+                    ['top', top], 
+                    ['bottom', bottom], 
+                    ['left', left], 
+                    ['right', right], 
+                    ['header', header], 
+                    ['footer', footer]
                 ]));
             }
             if(this._orientation) {
@@ -546,18 +549,6 @@ var SheetView = require('./SheetView');
          */
         setPageMargin: function (input) {
         	this._margin = input;
-        },
-        
-        /**
-         * http://www.schemacentral.com/sc/ooxml/t-ssml_ST_Orientation.html
-         * 
-         * Can be one of 'portrait' or 'landscape'.
-         * 
-         * @param {String} orientation
-         * @returns {undefined}
-         */
-        setPageOrientation: function (orientation) {
-            this._orientation = orientation;
         },
         
         /**
