@@ -460,6 +460,7 @@ var SheetView = require('./SheetView');
          */
         exportColumns: function (doc) {
             var cols = util.createElement(doc, 'cols');
+            var sFP = this.sheetFormatPr;
             for(var i = 0, l = this.columns.length; i < l; i++) {
                 var cd = this.columns[i];
                 var col = util.createElement(doc, 'col', [
@@ -478,7 +479,7 @@ var SheetView = require('./SheetView');
                 if(cd.width) {
                     col.setAttribute('width', cd.width);
                 } else {
-                    col.setAttribute('width', 9.140625);
+                    col.setAttribute('width', (sFP && sFP.defaultColWidth) ? sFP.defaultColWidth : 9.140625);
                 }
                 
                 cols.appendChild(col);
