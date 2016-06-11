@@ -94,6 +94,13 @@ var SheetView = require('./SheetView');
             this._rowInstructions[rowIndex] = instructions;
         },
         
+        setRowsInstructions: function (instructions) {
+            for (var i = 0; i < instructions.length; ++i) {
+                var a = instructions[i];
+                this.setRowInstructions(a.index, a);   
+            }
+        },
+        
         /**
         * Expects an array length of three.
         * 
@@ -356,6 +363,14 @@ var SheetView = require('./SheetView');
                     if (rowInst.style !== undefined) {
                       rowNode.setAttribute('customFormat', '1');
                       rowNode.setAttribute('s', rowInst.style);
+                    }
+                    
+                    if (rowInst.spans !== undefined) {
+                      rowNode.setAttribute('spans', rowInst.spans);
+                    }
+                    
+                    if (rowInst.hidden !== undefined) {
+                      rowNode.setAttribute('hidden', (rowInst.hidden)?1:0);
                     }
                 }
 
